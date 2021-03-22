@@ -28,7 +28,38 @@ class SoruSayfasi extends StatefulWidget {
 
 class _SoruSayfasiState extends State<SoruSayfasi> {
   List<Widget> secimler = [];
-  List<String> sorular=[];
+  List<String> sorular = [
+    "Titanic gelmiş geçmiş en büyük gemidir",
+    "Dünyadaki tavuk sayısı insan sayısından fazladır",
+    "Türkiyenin başkentş adanadır",
+    "Adana ülkedir",
+    "Adanalılar adamdır",
+    "Kelebeklerin ömrü bir gündür",
+    "Dünya düzdür",
+    "Fatih Sultan Mehmet hiç patates yememiştir",
+    "Fransızlar 80 demek için, 4 - 20 der"
+  ];
+  int soruDegis=0;
+  String dogrumu;
+  List<String> yanitlar=["false","true","false","false","true","false","false","true","true"];
+
+  SorulariKontrolEt(String dogrumu){
+    if(soruDegis<8){
+      soruDegis=soruDegis+1;
+    }
+  
+    this.dogrumu=dogrumu;
+    setState(() {
+      if(dogrumu==yanitlar[soruDegis-1])
+      {
+        secimler.add(kDogruIconu);
+      }
+      else if(dogrumu!=yanitlar[soruDegis-1]){
+        secimler.add(kYanlisIconu);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +72,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'Bilgi Testi Soruları',
+                '${sorular[soruDegis]}',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,9 +105,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       size: 30.0,
                     ),
                     onPressed: () {
-                      setState(() {
-                        secimler.add(kYanlisIconu);
-                      });
+                      SorulariKontrolEt("false");
                     },
                   ),
                 ),
@@ -90,9 +119,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                     color: Colors.green[400],
                     child: Icon(Icons.thumb_up, size: 30.0),
                     onPressed: () {
-                      setState(() {
-                        secimler.add(kDogruIconu);
-                      });
+                      SorulariKontrolEt("true");
                     },
                   ),
                 ),
@@ -104,5 +131,3 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
     );
   }
 }
-
-
