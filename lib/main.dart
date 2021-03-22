@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 void main() => runApp(BilgiTesti());
 
 class BilgiTesti extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-            backgroundColor: Colors.indigo[700],
-            body: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: SoruSayfasi(),
-                ))));
+      home: Scaffold(
+        backgroundColor: Colors.indigo[700],
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: SoruSayfasi(),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -22,6 +27,10 @@ class SoruSayfasi extends StatefulWidget {
 }
 
 class _SoruSayfasiState extends State<SoruSayfasi> {
+  List<Widget> secimler = [
+
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,48 +46,64 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                 'Bilgi Testi Soruları',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 25.0,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
         ),
+        Wrap(
+          spacing: 10,
+          direction: Axis.horizontal,
+          children: secimler,
+        ),
         Expanded(
           flex: 1,
           child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6.0),
-              child: Row(children: <Widget>[
-                Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6),
-                        child: RaisedButton(
-                          padding: EdgeInsets.all(12),
-                          textColor: Colors.white,
-                          color: Colors.red[400],
-                          child: Icon(
-                            Icons.thumb_down,
-                            size: 30.0,
-                          ),
-                          onPressed: () {},
-                        ))),
-                Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6),
-                        child: RaisedButton(
-                          padding: EdgeInsets.all(12),
-                          textColor: Colors.white,
-                          color: Colors.green[400],
-                          child: Icon(Icons.thumb_up, size: 30.0),
-                          onPressed: () {},
-                        ))),
-              ])),
-        )
+            padding: EdgeInsets.symmetric(horizontal: 6.0),
+            child: Row(children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: RaisedButton(
+                    padding: EdgeInsets.all(12),
+                    textColor: Colors.white,
+                    color: Colors.red[400],
+                    child: Icon(
+                      Icons.thumb_down,
+                      size: 30.0,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        secimler.add(kYanlisIconu);
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: RaisedButton(
+                    padding: EdgeInsets.all(12),
+                    textColor: Colors.white,
+                    color: Colors.green[400],
+                    child: Icon(Icons.thumb_up, size: 30.0),
+                    onPressed: () {
+                      setState(() {
+                        secimler.add(kDogruIconu);
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ]),
+          ),
+        ),
       ],
     );
   }
-
-  Deneme(){
-    
-  }
 }
+
+
