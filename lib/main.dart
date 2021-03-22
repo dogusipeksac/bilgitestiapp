@@ -46,18 +46,19 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
   SorulariKontrolEt(String dogrumu){
     if(soruDegis<8){
       soruDegis=soruDegis+1;
-    }
-  
+
+
     this.dogrumu=dogrumu;
     setState(() {
       if(dogrumu==yanitlar[soruDegis-1])
       {
         secimler.add(kDogruIconu);
       }
-      else if(dogrumu!=yanitlar[soruDegis-1]){
+      else {
         secimler.add(kYanlisIconu);
       }
     });
+    }
   }
 
   @override
