@@ -27,10 +27,8 @@ class SoruSayfasi extends StatefulWidget {
 }
 
 class _SoruSayfasiState extends State<SoruSayfasi> {
-  List<Widget> secimler = [
-
-  ];
-
+  List<Widget> secimler = [];
+  List<String> sorular=[];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,7 +52,8 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
           ),
         ),
         Wrap(
-          spacing: 10,
+          spacing: 3,
+          runSpacing: 3,
           direction: Axis.horizontal,
           children: secimler,
         ),
