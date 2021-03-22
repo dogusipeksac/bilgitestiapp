@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:knowledgetest_app/soru.dart';
 
 import 'constants.dart';
 
@@ -28,37 +29,24 @@ class SoruSayfasi extends StatefulWidget {
 
 class _SoruSayfasiState extends State<SoruSayfasi> {
   List<Widget> secimler = [];
-  List<String> sorular = [
-    "Titanic gelmiş geçmiş en büyük gemidir",
-    "Dünyadaki tavuk sayısı insan sayısından fazladır",
-    "Türkiyenin başkentş adanadır",
-    "Adana ülkedir",
-    "Adanalılar adamdır",
-    "Kelebeklerin ömrü bir gündür",
-    "Dünya düzdür",
-    "Fatih Sultan Mehmet hiç patates yememiştir",
-    "Fransızlar 80 demek için, 4 - 20 der"
-  ];
-  int soruDegis=0;
+
+  int soruDegis = 0;
   String dogrumu;
-  List<String> yanitlar=["false","true","false","false","true","false","false","true","true"];
 
-  SorulariKontrolEt(String dogrumu){
-    if(soruDegis<8){
-      soruDegis=soruDegis+1;
+  SorulariKontrolEt(String dogrumu) {
 
 
-    this.dogrumu=dogrumu;
+
+    this.dogrumu = dogrumu;
     setState(() {
-      if(dogrumu==yanitlar[soruDegis-1])
-      {
-        secimler.add(kDogruIconu);
-      }
-      else {
-        secimler.add(kYanlisIconu);
-      }
-    });
-    }
+        if (dogrumu == soruBankasi[soruDegis].soruYaniti) {
+          secimler.add(kDogruIconu);
+        } else {
+          secimler.add(kYanlisIconu);
+        }
+        soruDegis++;
+      });
+
   }
 
   @override
@@ -73,7 +61,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                '${sorular[soruDegis]}',
+                soruBankasi[soruDegis].soruMetni,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -106,7 +94,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       size: 30.0,
                     ),
                     onPressed: () {
-                      SorulariKontrolEt("false");
+                        SorulariKontrolEt("false");
                     },
                   ),
                 ),
@@ -120,7 +108,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                     color: Colors.green[400],
                     child: Icon(Icons.thumb_up, size: 30.0),
                     onPressed: () {
-                      SorulariKontrolEt("true");
+                        SorulariKontrolEt("true");
                     },
                   ),
                 ),
