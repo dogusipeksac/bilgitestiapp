@@ -77,6 +77,4 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
       ],
     );
   }
-
-  
 }
