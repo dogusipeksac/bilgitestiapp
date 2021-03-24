@@ -34,9 +34,20 @@ class TestVeri{
     if(_soruDegis<_soruBankasi.length-1){
 
       _soruDegis++;
-
     }
 
+
+  }
+  bool testBittimi(){
+    if(_soruDegis>=_soruBankasi.length-1){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  void testiSifirla(){
+    _soruDegis=0;
   }
 
 

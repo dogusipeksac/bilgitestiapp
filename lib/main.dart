@@ -31,21 +31,25 @@ class SoruSayfasi extends StatefulWidget {
 class _SoruSayfasiState extends State<SoruSayfasi> {
   List<Widget> secimler = [];
 
-
-
-  TestVeri testVeri_1=TestVeri();
+  TestVeri testVeri_1 = TestVeri();
 
   SorulariKontrolEt(bool dogrumu) {
+    if (testVeri_1.testBittimi()) {
+      //alertdialog gösterilecek
+      //indexi sıfırla
+      //seçimleri sıfırla
+      showMyDialog();
 
-    setState(() {
-        if (dogrumu==testVeri_1.getSoruYaniti()) {
+    } else {
+      setState(() {
+        if (dogrumu == testVeri_1.getSoruYaniti()) {
           secimler.add(kDogruIconu);
         } else {
           secimler.add(kYanlisIconu);
         }
         testVeri_1.sonrakiSoru();
       });
-
+    }
   }
 
   @override
@@ -93,7 +97,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       size: 30.0,
                     ),
                     onPressed: () {
-                        SorulariKontrolEt(false);
+                      SorulariKontrolEt(false);
                     },
                   ),
                 ),
@@ -107,7 +111,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                     color: Colors.green[400],
                     child: Icon(Icons.thumb_up, size: 30.0),
                     onPressed: () {
-                        SorulariKontrolEt(true);
+                      SorulariKontrolEt(true);
                     },
                   ),
                 ),
@@ -116,6 +120,38 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
           ),
         ),
       ],
+    );
+  }
+
+  showMyDialog() {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Tebrikler.Testi bitirdiniz.'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Başa dönmek için tıkla.'),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Başa dön.'),
+              onPressed: () {
+                setState(() {
+                  testVeri_1.testiSifirla();
+                  secimler = [];
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
