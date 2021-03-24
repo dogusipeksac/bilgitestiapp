@@ -31,22 +31,19 @@ class SoruSayfasi extends StatefulWidget {
 class _SoruSayfasiState extends State<SoruSayfasi> {
   List<Widget> secimler = [];
 
-  int soruDegis = 0;
-  String dogrumu;
+
+
   TestVeri testVeri_1=TestVeri();
 
-  SorulariKontrolEt(String dogrumu) {
+  SorulariKontrolEt(bool dogrumu) {
 
-
-
-    this.dogrumu = dogrumu;
     setState(() {
-        if (dogrumu == testVeri_1.soruBankasi[soruDegis].soruYaniti) {
+        if (dogrumu==testVeri_1.getSoruYaniti()) {
           secimler.add(kDogruIconu);
         } else {
           secimler.add(kYanlisIconu);
         }
-        soruDegis++;
+        testVeri_1.sonrakiSoru();
       });
 
   }
@@ -63,7 +60,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                testVeri_1.soruBankasi[soruDegis].soruMetni,
+                testVeri_1.getSoruMetni(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -96,7 +93,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                       size: 30.0,
                     ),
                     onPressed: () {
-                        SorulariKontrolEt("false");
+                        SorulariKontrolEt(false);
                     },
                   ),
                 ),
@@ -110,7 +107,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
                     color: Colors.green[400],
                     child: Icon(Icons.thumb_up, size: 30.0),
                     onPressed: () {
-                        SorulariKontrolEt("true");
+                        SorulariKontrolEt(true);
                     },
                   ),
                 ),

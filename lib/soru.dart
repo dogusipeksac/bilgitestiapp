@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 class Soru{
   String soruMetni;
-  String soruYaniti;
+  bool soruYaniti;
   Soru({@required this.soruMetni,this.soruYaniti});
 
 }
