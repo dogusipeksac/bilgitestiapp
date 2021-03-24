@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:knowledgetest_app/soru.dart';
+import 'package:knowledgetest_app/test_veri.dart';
 
 import 'constants.dart';
 
@@ -32,6 +33,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
 
   int soruDegis = 0;
   String dogrumu;
+  TestVeri testVeri_1=TestVeri();
 
   SorulariKontrolEt(String dogrumu) {
 
@@ -39,7 +41,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
 
     this.dogrumu = dogrumu;
     setState(() {
-        if (dogrumu == soruBankasi[soruDegis].soruYaniti) {
+        if (dogrumu == testVeri_1.soruBankasi[soruDegis].soruYaniti) {
           secimler.add(kDogruIconu);
         } else {
           secimler.add(kYanlisIconu);
@@ -61,7 +63,7 @@ class _SoruSayfasiState extends State<SoruSayfasi> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                soruBankasi[soruDegis].soruMetni,
+                testVeri_1.soruBankasi[soruDegis].soruMetni,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
